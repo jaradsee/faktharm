@@ -2,11 +2,12 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use app\models\Uploads;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Riskhead */
 
-$this->title = $model->risk_id;
+$this->title = $model->event;
 $this->params['breadcrumbs'][] = ['label' => 'Riskheads', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -65,5 +66,9 @@ $this->params['breadcrumbs'][] = $this->title;
             'input_complain',
         ],
     ]) ?>
-
+<div class="panel panel-default">
+  <div class="panel-body">
+     <?= dosamigos\gallery\Gallery::widget(['items' => $model->getThumbnails($model->ref,$model->event)]);?>
+  </div>
+</div>
 </div>

@@ -51,7 +51,7 @@ use app\models\Adddep;
  */
 class Riskhead extends \yii\db\ActiveRecord
 {
-    const UPLOAD_FOLDER='photolibrarys';
+    const UPLOAD_FOLDER='riskheadphoto';
     /**
      * @inheritdoc
      */
@@ -245,8 +245,8 @@ public function behaviors()
         return Url::base(true).'/'.self::UPLOAD_FOLDER.'/';
     }
 
-    public function getThumbnails($ref,$event_name){
-         $uploadFiles   = Uploads::find()->where(['ref'=>$ref])->all();
+    public function getThumbnails($ref,$event){
+         $uploadFiles   = Uploadsph::find()->where(['ref'=>$ref])->all();
          $preview = [];
         foreach ($uploadFiles as $file) {
             $preview[] = [

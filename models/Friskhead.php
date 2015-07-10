@@ -51,7 +51,7 @@ use app\models\Adddep;
  */
 class Friskhead extends \yii\db\ActiveRecord
 {
-    const UPLOAD_FOLDER='photolibrarys';
+    const UPLOAD_FOLDER='riskphoto';
     /**
      * @inheritdoc
      */
@@ -113,7 +113,7 @@ class Friskhead extends \yii\db\ActiveRecord
             'last_staff' => 'Last Staff',
             'print_url' => 'Print Url',
             'act_st' => 'Act St',
-            'ref' => 'Ref',
+            'ref' => 'เลข fk กับ upload ใช้กับ upload ajax',
             'clinictype' => 'Clinictype',
             'place_id' => 'Place ID',
             'staff' => 'Staff',
@@ -133,7 +133,7 @@ class Friskhead extends \yii\db\ActiveRecord
     }
 
     public function getThumbnails($ref,$event_name){
-         $uploadFiles   = Uploads::find()->where(['ref'=>$ref])->all();
+         $uploadFiles   = Uploadsp::find()->where(['ref'=>$ref])->all();
          $preview = [];
         foreach ($uploadFiles as $file) {
             $preview[] = [

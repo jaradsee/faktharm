@@ -3,8 +3,6 @@
 namespace app\controllers;
 
 use Yii;
-
-
 use app\models\Riskhead;
 use app\models\RiskheadSearch;
 use yii\web\Controller;
@@ -19,7 +17,7 @@ use yii\web\UploadedFile;
 use app\models\Prohead;
 use app\models\Prodetail;
 use app\models\District;
-use app\models\Uploads;
+use app\models\Uploadsph;
 
 use yii\helpers\Html;
 use yii\helpers\Url;
@@ -78,7 +76,7 @@ class RiskheadController extends Controller
         $model = new Riskhead();
         if ($model->load(Yii::$app->request->post()) ) {
 
-            $this->Uploads(false);
+            $this->Uploadsph(false);
 
             if($model->save()){
                  return $this->redirect(['view', 'id' => $model->risk_id]);
@@ -111,7 +109,7 @@ class RiskheadController extends Controller
          list($initialPreview,$initialPreviewConfig) = $this->getInitialPreview($model->ref);
 
         if ($model->load(Yii::$app->request->post())) {
-            $this->Uploads(false);
+            $this->Uploadsph(false);
 
             if($model->save()){
                  return $this->redirect(['view', 'id' => $model->risk_id]);
@@ -139,7 +137,7 @@ class RiskheadController extends Controller
         $model = $this->findModel($id);
         //remove upload file & data
         $this->removeUploadDir($model->ref);
-        Uploads::deleteAll(['ref'=>$model->ref]);
+        Uploadsph::deleteAll(['ref'=>$model->ref]);
 
         $model->delete();
 
@@ -214,7 +212,7 @@ public function actionGetProdetail() {
   |*********************************************************************************|*/
 
     public function actionUploadAjax(){
-           $this->Uploads(true);
+           $this->Uploadsph(true);
      }
 
     private function CreateDir($folderName){
@@ -231,7 +229,7 @@ public function actionGetProdetail() {
         BaseFileHelper::removeDirectory(Riskhead::getUploadPath().$dir);
     }
 
-    private function Uploads($isAjax=false) {
+    private function Uploadsph($isAjax=false) {
              if (Yii::$app->request->isPost) {
                 $images = UploadedFile::getInstancesByName('upload_ajax');
                 if ($images) {
@@ -255,7 +253,7 @@ public function actionGetProdetail() {
                                  $this->createThumbnail($ref,$realFileName);
                             }
                           
-                            $model                  = new Uploads;
+                            $model                  = new Uploadsph;
                             $model->ref             = $ref;
                             $model->file_name       = $fileName;
                             $model->real_filename   = $realFileName;
@@ -277,7 +275,7 @@ public function actionGetProdetail() {
     }
 
     private function getInitialPreview($ref) {
-            $datas = Uploads::find()->where(['ref'=>$ref])->all();
+            $datas = Uploadsph::find()->where(['ref'=>$ref])->all();
             $initialPreview = [];
             $initialPreviewConfig = [];
             foreach ($datas as $key => $value) {
@@ -296,7 +294,7 @@ public function actionGetProdetail() {
             return @is_array(getimagesize($filePath)) ? true : false;
     }
 
-    private function getTemplatePreview(Uploads $model){     
+    private function getTemplatePreview(Uploadsph $model){     
             $filePath = Riskhead::getUploadUrl().$model->ref.'/thumbnail/'.$model->real_filename;
             $isImage  = $this->isImage($filePath);
             if($isImage){
@@ -320,7 +318,7 @@ public function actionGetProdetail() {
     
     public function actionDeletefileAjax(){
 
-        $model = Uploads::findOne(Yii::$app->request->post('key'));
+        $model = Uploadsph::findOne(Yii::$app->request->post('key'));
         if($model!==NULL){
             $filename  = Riskhead::getUploadPath().$model->ref.'/'.$model->real_filename;
             $thumbnail = Riskhead::getUploadPath().$model->ref.'/thumbnail/'.$model->real_filename;

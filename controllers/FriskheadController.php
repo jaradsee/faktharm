@@ -3,7 +3,7 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\Uploads;
+use app\models\Uploadsp;
 use app\models\Friskhead;
 use app\models\FriskheadSearch;
 use yii\web\Controller;
@@ -76,7 +76,7 @@ class FriskheadController extends Controller
 
         if ($model->load(Yii::$app->request->post()) ) {
 
-            $this->Uploads(false);
+            $this->Uploadsp(false);
 
             if($model->save()){
                  return $this->redirect(['view', 'id' => $model->risk_id]);
@@ -90,11 +90,11 @@ class FriskheadController extends Controller
             'model' => $model,
             'prodetail'=> [],
         ]);
-        
+
     }
 
     /**
-     * Updates an existing Friskhead model.
+     * Updates an existing Priskhead model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param string $id
      * @return mixed
@@ -102,15 +102,11 @@ class FriskheadController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-        
-        $prodetail         = ArrayHelper::map($this->getProdetail($model->prohead),'id','name');
-        
-
 
         list($initialPreview,$initialPreviewConfig) = $this->getInitialPreview($model->ref);
 
         if ($model->load(Yii::$app->request->post())) {
-            $this->Uploads(false);
+            $this->Uploadsp(false);
 
             if($model->save()){
                  return $this->redirect(['view', 'id' => $model->risk_id]);
@@ -119,14 +115,15 @@ class FriskheadController extends Controller
         
         return $this->render('update', [
             'model' => $model,
-            'prodetail'=> [],
+            'prodetail'=> $prodetail,
              'initialPreview'=>$initialPreview,
              'initialPreviewConfig'=>$initialPreviewConfig
         ]);
+        
     }
 
     /**
-     * Deletes an existing Friskhead model.
+     * Deletes an existing Priskhead model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param string $id
      * @return mixed
@@ -136,7 +133,7 @@ class FriskheadController extends Controller
         $model = $this->findModel($id);
         //remove upload file & data
         $this->removeUploadDir($model->ref);
-        Uploads::deleteAll(['ref'=>$model->ref]);
+        Uploadsp::deleteAll(['ref'=>$model->ref]);
 
         $model->delete();
 
@@ -205,12 +202,12 @@ class FriskheadController extends Controller
         }
         return $obj;
     }
-    /*|*********************************************************************************|
+  /*|*********************************************************************************|
   |================================ Upload Ajax ====================================|
   |*********************************************************************************|*/
 
     public function actionUploadAjax(){
-           $this->Uploads(true);
+           $this->Uploadsp(true);
      }
 
     private function CreateDir($folderName){
@@ -227,7 +224,7 @@ class FriskheadController extends Controller
         BaseFileHelper::removeDirectory(Friskhead::getUploadPath().$dir);
     }
 
-    private function Uploads($isAjax=false) {
+    private function Uploadsp($isAjax=false) {
              if (Yii::$app->request->isPost) {
                 $images = UploadedFile::getInstancesByName('upload_ajax');
                 if ($images) {
@@ -251,7 +248,7 @@ class FriskheadController extends Controller
                                  $this->createThumbnail($ref,$realFileName);
                             }
                           
-                            $model                  = new Uploads;
+                            $model                  = new Uploadsp;
                             $model->ref             = $ref;
                             $model->file_name       = $fileName;
                             $model->real_filename   = $realFileName;
@@ -273,7 +270,7 @@ class FriskheadController extends Controller
     }
 
     private function getInitialPreview($ref) {
-            $datas = Uploads::find()->where(['ref'=>$ref])->all();
+            $datas = Uploadsp::find()->where(['ref'=>$ref])->all();
             $initialPreview = [];
             $initialPreviewConfig = [];
             foreach ($datas as $key => $value) {
@@ -292,7 +289,7 @@ class FriskheadController extends Controller
             return @is_array(getimagesize($filePath)) ? true : false;
     }
 
-    private function getTemplatePreview(Uploads $model){     
+    private function getTemplatePreview(Uploadsp $model){     
             $filePath = Friskhead::getUploadUrl().$model->ref.'/thumbnail/'.$model->real_filename;
             $isImage  = $this->isImage($filePath);
             if($isImage){
@@ -316,7 +313,7 @@ class FriskheadController extends Controller
     
     public function actionDeletefileAjax(){
 
-        $model = Uploads::findOne(Yii::$app->request->post('key'));
+        $model = Uploadsp::findOne(Yii::$app->request->post('key'));
         if($model!==NULL){
             $filename  = Friskhead::getUploadPath().$model->ref.'/'.$model->real_filename;
             $thumbnail = Friskhead::getUploadPath().$model->ref.'/thumbnail/'.$model->real_filename;

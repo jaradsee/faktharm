@@ -66,4 +66,9 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]) ?>
 
+<div class="panel panel-default">
+  <div class="panel-body">
+     <?= dosamigos\gallery\Gallery::widget(['items' => $model->getThumbnails($model->ref,$model->event)]);?>
+  </div>
 </div>
+    

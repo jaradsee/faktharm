@@ -61,6 +61,7 @@ use kartik\date\DatePicker;
         ],
     ]);
     ?>
+    
     <div class="row">
         <div class="col-sm-6 col-md-6">
             <?= $form->field($model, 'customer_name')->textInput(['maxlength' => 150]) ?>
