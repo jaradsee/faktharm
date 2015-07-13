@@ -18,6 +18,7 @@ use app\models\Prohead;
 use app\models\Prodetail;
 use app\models\Riskplace;
 use yii\helpers\VarDumper;
+use kartik\widgets\DepDrop;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Priskhead */
@@ -70,6 +71,29 @@ use yii\helpers\VarDumper;
 
 
     <?= $form->field($model, 'risk_ref_no')->textInput(['maxlength' => true]) ?>
+        
+        
+        <div class="col-sm-6 col-md-6">
+       <?= $form->field($model, 'prohead')->dropdownList(
+            ArrayHelper::map(Prohead::find()->all(),
+            'PROHEAD_ID',
+            'PROHEAD_NAME'),
+            [
+                'id'=>'ddl-prohead',
+                'prompt'=>'เลือกโปรแกรมความเสี่ยง'
+       ]); ?>
+    </div>
+     <div class="col-sm-6 col-md-6">
+       <?= $form->field($model, 'prodetail')->widget(DepDrop::classname(), [
+            'options'=>['id'=>'ddl-prodetail'],
+            'data'=> $prodetail,
+            'pluginOptions'=>[
+                'depends'=>['ddl-prohead'],
+                'placeholder'=>'เลือกหัวข้ออุบัติการณ์...',
+                'url'=>Url::to(['/riskhead/get-prodetail'])
+            ]
+        ]); ?>
+    </div>
 
     <?= $form->field($model, 'input_complain')->textInput() ?>
         

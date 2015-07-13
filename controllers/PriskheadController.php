@@ -8,13 +8,17 @@ use app\models\Priskheadearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use yii\helpers\Url;
-use yii\helpers\html;
-use yii\web\UploadedFile;
-use yii\helpers\BaseFileHelper;
 use yii\helpers\Json;
 use yii\helpers\ArrayHelper;
+use yii\helpers\BaseFileHelper;
+use yii\web\UploadedFile;
+use app\models\Prohead;
+use app\models\Prodetail;
+use app\models\District;
 use app\models\Uploadsp;
+use yii\helpers\Html;
+use yii\helpers\Url;
+
 
 /**
  * PriskheadController implements the CRUD actions for Priskhead model.
@@ -83,6 +87,7 @@ class PriskheadController extends Controller
 
         return $this->render('create', [
             'model' => $model,
+            'prodetail'=> [],
         ]);
 
     }
@@ -96,7 +101,7 @@ class PriskheadController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-
+        $prodetail         = ArrayHelper::map($this->getProdetail($model->prohead),'id','name');
         list($initialPreview,$initialPreviewConfig) = $this->getInitialPreview($model->ref);
 
         if ($model->load(Yii::$app->request->post())) {
@@ -109,6 +114,7 @@ class PriskheadController extends Controller
         
         return $this->render('update', [
             'model' => $model,
+            'prodetail'=> $prodetail,
              'initialPreview'=>$initialPreview,
              'initialPreviewConfig'=>$initialPreviewConfig
         ]);
@@ -148,6 +154,56 @@ class PriskheadController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+    
+    public function actionGetProdetail() {
+        $out = [];
+        if (isset($_POST['depdrop_parents'])) {
+            $parents = $_POST['depdrop_parents'];
+            if ($parents != null) {
+                $prohead_id = $parents[0];
+                $out = $this->getProdetail($prohead_id);
+                echo Json::encode(['output'=>$out, 'selected'=>'']);
+                return;
+            }
+        }
+        echo Json::encode(['output'=>'', 'selected'=>'']);
+    }
+
+    public function actionGetDistrict() {
+        $out = [];
+        if (isset($_POST['depdrop_parents'])) {
+            $ids = $_POST['depdrop_parents'];
+            $province_id = empty($ids[0]) ? null : $ids[0];
+            $amphur_id = empty($ids[1]) ? null : $ids[1];
+            if ($province_id != null) {
+               $data = $this->getDistrict($amphur_id);      
+               echo Json::encode(['output'=>$data, 'selected'=>'']);
+               return;
+            }
+        }
+        echo Json::encode(['output'=>'', 'selected'=>'']);
+    }
+
+    protected function getProdetail($id){
+        $datas = Prodetail::find()->where(['PROHEAD_ID'=>$id])->all(); 
+        return $this->MapData($datas,'PRODETAIL_ID','PRODETAIL_NAME');
+    }
+
+    protected function getDistrict($id){
+        $datas = District::find()->where(['AMPHUR_ID'=>$id])->all(); 
+        return $this->MapData($datas,'DISTRICT_ID','DISTRICT_NAME');
+    }
+
+    protected function MapData($datas,$fieldId,$fieldName){
+        $obj = [];
+        foreach ($datas as $key => $value) {
+            array_push($obj, ['id'=>$value->{$fieldId},'name'=>$value->{$fieldName}]);
+        }
+        return $obj;
+    }
+
+    
+    
 /*|*********************************************************************************|
   |================================ Upload Ajax ====================================|
   |*********************************************************************************|*/

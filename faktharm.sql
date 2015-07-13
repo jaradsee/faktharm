@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50541
 File Encoding         : 65001
 
-Date: 2015-07-09 17:01:05
+Date: 2015-07-13 18:50:53
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -155,12 +155,61 @@ CREATE TABLE `friskhead` (
   `input_complain` int(3) DEFAULT NULL,
   PRIMARY KEY (`risk_id`),
   UNIQUE KEY `ref` (`ref`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of friskhead
 -- ----------------------------
 INSERT INTO `friskhead` VALUES ('0001', '2015-07-01', '10.00', '1', '1', 'fdhgsdhfdhfshfs', 'ghfhfghfg', 'fhfhf', '1', '1', '1000.00', 'fghdfhfdh', 'gfhdfhg', '1', '3', '1', '1', '2', '1', '1', '1', '1', '0000-00-00', '0000-00-00 00:00:00', '1', '1', '1', null, null, null, '', '', null, '', '1');
+INSERT INTO `friskhead` VALUES ('0002', '2015-07-01', '10.00', '1', '2', 'เหตุเกิด  สน', 'ปลอดภถัย', 'dsfg', 'dfsgdf', 'gdsfgdfsg', '1000.00', 'dfsgdsfg', 'dsfgdsfgf', '1', '', null, '2', '9', '', '', '', '2', null, null, '', '', '1', null, null, null, '', '', null, '', null);
+INSERT INTO `friskhead` VALUES ('0003', '2015-07-14', '10.00', '1', '2', 'นายงงงงงงงงงงงงงงงง', 'งงง', 'งงง', 'งงง', 'งง', '500.00', 'งงง', 'งงง', '', '', null, '15', '101', '', '', '', '1', null, null, '', '', '1', null, null, null, '', '', null, '', null);
+
+-- ----------------------------
+-- Table structure for ftriskhead
+-- ----------------------------
+DROP TABLE IF EXISTS `ftriskhead`;
+CREATE TABLE `ftriskhead` (
+  `risk_id` int(4) unsigned zerofill NOT NULL AUTO_INCREMENT,
+  `risk_date` date NOT NULL,
+  `event_name` varchar(200) NOT NULL,
+  `ref` varchar(50) DEFAULT NULL COMMENT '�Ţ fk �Ѻ upload ��Ѻ upload ajax',
+  `risk_again` char(1) DEFAULT NULL,
+  `department` int(2) DEFAULT NULL,
+  `miss` char(1) DEFAULT NULL,
+  `safety` varchar(200) NOT NULL,
+  `outcome_pt` varchar(200) NOT NULL,
+  `outcome_guest` varchar(200) DEFAULT NULL,
+  `outcome_staff` varchar(200) DEFAULT NULL,
+  `outcome_price` double(7,2) DEFAULT NULL,
+  `solve_begin` varchar(200) DEFAULT NULL,
+  `sum_solve` varchar(200) DEFAULT NULL,
+  `risk_level` char(1) DEFAULT NULL,
+  `risk_head_department` varchar(200) DEFAULT NULL,
+  `risk_status` char(1) DEFAULT NULL,
+  `prohead` varchar(6) DEFAULT NULL,
+  `prodetail` varchar(6) DEFAULT NULL,
+  `program_text` varchar(200) DEFAULT NULL,
+  `login_name` varchar(100) DEFAULT NULL,
+  `risk_sum_dep` varchar(200) DEFAULT NULL,
+  `risk_simple` int(2) DEFAULT NULL,
+  `date_input` date DEFAULT NULL,
+  `last_update` datetime DEFAULT NULL,
+  `last_staff` varchar(100) DEFAULT NULL,
+  `print_url` varchar(200) DEFAULT NULL,
+  `act_st` char(1) DEFAULT NULL,
+  `clinictype` int(2) DEFAULT NULL,
+  `place_id` int(3) DEFAULT NULL,
+  `staff` varchar(100) DEFAULT NULL,
+  `date_complete` date DEFAULT NULL,
+  PRIMARY KEY (`risk_id`),
+  UNIQUE KEY `ref` (`ref`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of ftriskhead
+-- ----------------------------
+INSERT INTO `ftriskhead` VALUES ('0004', '2015-07-10', 'มีอาราย', 'b0DzAGYO2OdgbMnUdT8qgr', '1', '1', '1', 'รอๆๆ', 'เอาท์ ผป', 'เอาท์ ญ', 'เอาท์ จนท', '500.00', 'เริ่ม', 'ทบทวน', '1', '', '1', '1', '1', '', '', '', null, null, null, '', '', '1', '1', '1', '', null);
+INSERT INTO `ftriskhead` VALUES ('0005', '2015-07-10', 'คอมพิวเตอร์พัง', 'bIyg9t8nqROXGU8dWEvGBE', '1', '1', '1', 'ป้องกัน', 'เอาท์ ผป', 'เอาท์ ญ', 'เอาท์ จนท', '5000.00', 'เริ่มแกะ', 'ทบทวนแนวทาง', '1', '', '', '10', '76', '', '', '', '2', '2015-07-10', '2015-07-10 17:47:14', '', '', '', '3', '1', '', null);
 
 -- ----------------------------
 -- Table structure for level
@@ -206,7 +255,7 @@ CREATE TABLE `photo_library` (
   `province_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `ref` (`ref`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of photo_library
@@ -215,6 +264,8 @@ INSERT INTO `photo_library` VALUES ('3', '6f6VTlqDp-V6nrU4KAMjh1', 'ไปเช
 INSERT INTO `photo_library` VALUES ('4', 'RB7whG0kLUKPCSnAQ-2qYf', 'xfdhxsh', 'dxfhgdfhgdsfh', '2015-07-09 00:00:00', '2015-07-09 00:00:00', 'fdhsfh', '', '', '2');
 INSERT INTO `photo_library` VALUES ('5', 'QABsNo20WfMhUpVT9tpLpk', 'xfdhxsh', 'dxfhgdfhgdsfh', '2015-07-09 00:00:00', '2015-07-09 00:00:00', 'fdhsfh', '', '', '2');
 INSERT INTO `photo_library` VALUES ('6', 'q8xONqSXw-UpWQ3E4SH5l7', 'xfdhxsh', 'dxfhgdfhgdsfh', '2015-07-09 00:00:00', '2015-07-09 00:00:00', 'fdhsfh', '', '', '2');
+INSERT INTO `photo_library` VALUES ('7', 'ntolit4qiCFcDg915oO_nD', 'ปิกปผิ', 'ปอิปแอ', '2015-07-09 00:00:00', '2015-07-09 00:00:00', 'อืิปดิ', 'อแิแปิ', '', '1');
+INSERT INTO `photo_library` VALUES ('8', '0jX57D__Ku17loxc6nLj04', ' nbb', 'ghk', '2015-07-10 00:00:00', '2015-07-10 00:00:00', 'ghkg', '', '', '2');
 
 -- ----------------------------
 -- Table structure for print
@@ -232,6 +283,34 @@ CREATE TABLE `print` (
 -- ----------------------------
 -- Records of print
 -- ----------------------------
+
+-- ----------------------------
+-- Table structure for priskhead
+-- ----------------------------
+DROP TABLE IF EXISTS `priskhead`;
+CREATE TABLE `priskhead` (
+  `risk_id` int(4) unsigned zerofill NOT NULL AUTO_INCREMENT,
+  `risk_date` date NOT NULL,
+  `event_name` varchar(200) NOT NULL,
+  `ref` varchar(50) DEFAULT NULL COMMENT '�Ţ fk �Ѻ upload ��Ѻ upload ajax',
+  `risk_again` char(1) DEFAULT NULL,
+  `date_complete` date DEFAULT NULL,
+  `risk_ref_no` varchar(100) DEFAULT NULL,
+  `input_complain` int(3) DEFAULT NULL,
+  `risk_time` varchar(5) DEFAULT NULL,
+  `prohead` varchar(6) DEFAULT NULL,
+  `prodetail` varchar(6) DEFAULT NULL,
+  PRIMARY KEY (`risk_id`),
+  UNIQUE KEY `ref` (`ref`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of priskhead
+-- ----------------------------
+INSERT INTO `priskhead` VALUES ('0001', '2015-07-10', 'มีอาราย', 'Aoh9hpTQMO4-IRbc6xFnv5', '1', null, '', null, '10.00', '3', '18');
+INSERT INTO `priskhead` VALUES ('0002', '2015-07-10', 'ไม่มีอารายหรา', 'BvHm84hkvEDNAZkj5zQp1P', '1', '2015-07-10', '', null, '15.00', '2', '9');
+INSERT INTO `priskhead` VALUES ('0003', '2015-07-10', 'กผิก', 'RFxOy6ZoreHa8SXAsc7a-S', '1', '2015-07-10', '', null, '15.00', '4', '28');
+INSERT INTO `priskhead` VALUES ('0004', '2015-07-13', 'มีอารายก้อว่ามา', '5mmUhYl1ns7GnFhZvhXR-W', '1', null, '1', '1', '10.00', '14', '97');
 
 -- ----------------------------
 -- Table structure for prodetail
@@ -517,7 +596,6 @@ CREATE TABLE `riskhead` (
   `last_staff` varchar(100) DEFAULT NULL,
   `print_url` varchar(200) DEFAULT NULL,
   `act_st` char(1) DEFAULT NULL,
-  `ref` varchar(50) DEFAULT NULL COMMENT '�Ţ fk �Ѻ upload ��Ѻ upload ajax',
   `clinictype` int(2) DEFAULT NULL,
   `place_id` int(3) DEFAULT NULL,
   `staff` varchar(100) DEFAULT NULL,
@@ -525,15 +603,18 @@ CREATE TABLE `riskhead` (
   `date_complete` date DEFAULT NULL,
   `risk_ref_no` varchar(100) DEFAULT NULL,
   `input_complain` int(3) DEFAULT NULL,
+  `ref` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`risk_id`),
   UNIQUE KEY `ref` (`ref`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of riskhead
 -- ----------------------------
-INSERT INTO `riskhead` VALUES ('0001', '2015-07-14', '10.00', '1', '2', ' hfcfhcgfh', 'fghfghfghgfhgfh', 'fhfghfh', 'fghfghfg', 'hfghgfhf', '2000.00', 'fhgfhg', 'ffghfgh', '1', '', '3', '1', '1', '', '', '', '2', '2015-07-09', '2015-07-09 16:26:57', '', '', '1', null, '2', '2', '', '1', null, '', '2');
-INSERT INTO `riskhead` VALUES ('0002', '2015-07-01', '10.00', '1', '2', 'คนไข้  มี  อารมณ์', 'สกัด จุด', 'หงุดหงิด', 'เซ็ง', 'นอย', '99999.99', 'ยิ้ม', 'ปล่อยวางเถอะ  โยม', '', '2', '2', '11', '85', '', '', 'ยัง', '4', '2015-07-09', '2015-07-09 16:15:50', '', '', '1', null, '2', '2', '', '1', null, '', '2');
+INSERT INTO `riskhead` VALUES ('0001', '2015-07-14', '10.00', '1', '2', ' hfcfhcgfh', 'fghfghfghgfhgfh', 'fhfghfh', 'fghfghfg', 'hfghgfhf', '2000.00', 'fhgfhg', 'ffghfgh', '1', '', '3', '1', '1', '', '', '', '2', '2015-07-09', '2015-07-10 11:03:19', '', '', '1', '2', '2', '', '1', null, '', '2', null);
+INSERT INTO `riskhead` VALUES ('0002', '2015-07-01', '10.00', '1', '2', 'คนไข้  มี  อารมณ์', 'สกัด จุด', 'หงุดหงิด', 'เซ็ง', 'นอย', '99999.99', 'ยิ้ม', 'ปล่อยวางเถอะ  โยม', '1', '', '2', '11', '85', '', '', 'ยัง', '4', '2015-07-09', '2015-07-09 17:11:03', '', '', '1', '2', '2', '', '1', null, '', '2', null);
+INSERT INTO `riskhead` VALUES ('0003', '2015-07-01', '10.15', '1', '2', 'กปผ ดปป้ด้ด้', 'ดเ้เ้ดเ้ด้ด้', 'ดเ้เด้', 'ดเ้ดเ้', 'ดเ้ดเ้', '99999.99', 'ดเ้ดเ้', 'เด้กด้ดเ้', '1', '', '2', '8', '66', '', '', '', '3', '2015-07-09', '2015-07-09 17:25:11', '', '', '2', '1', '1', '', '1', null, '', '1', null);
+INSERT INTO `riskhead` VALUES ('0004', '2015-07-01', '10.00', '1', '1', 'ผู้ป่วยตกเตียง', 'มัดไว้', 'หัวแตก', 'ตกใจ', 'หงุดหงิด', '5000.00', 'ชี้แจง  ให้ญาติเฝ้า', 'ผู้ป่วย ญาติ เข้าใจดี', '1', '', '4', '8', '67', '', '', 'สนทนากลุ่ม case study', '1', '2015-07-10', '2015-07-10 14:52:51', '', '', '1', '1', '1', '', '1', null, '', '2', null);
 
 -- ----------------------------
 -- Table structure for riskplace
@@ -604,12 +685,101 @@ CREATE TABLE `uploads` (
   `create_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `type` int(11) DEFAULT NULL COMMENT 'ประเภท',
   PRIMARY KEY (`upload_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of uploads
 -- ----------------------------
-INSERT INTO `uploads` VALUES ('1', 'tyi8k_M0NlG-4mZE4kqnhf', 'Penguins.jpg', '4a0bf85911f8aacee655cbe531b2433c.jpg', '2015-07-09 14:30:33', null);
-INSERT INTO `uploads` VALUES ('2', 'nbkrUDn7IQ95swPVWvz063', 'Koala.jpg', '9b11066dc679f8a2a47d6cff23f3fc78.jpg', '2015-07-09 14:35:21', null);
-INSERT INTO `uploads` VALUES ('3', '9S-ZjAOPEqdOokislanmM9', 'Koala.jpg', '1d7b3c468a0f93769e26bc74262c7ed8.jpg', '2015-07-09 14:46:23', null);
-INSERT INTO `uploads` VALUES ('4', 'null', 'Koala.jpg', '6509cab0bc07d15a209965f1216b42c9.jpg', '2015-07-09 15:07:09', null);
+INSERT INTO `uploads` VALUES ('1', 'Rhds9i1nJYqwDZWC2SsB6w', 'Chrysanthemum.jpg', 'c63333aa58f67de0b0bedb2a93d1dd68.jpg', '2015-07-10 09:55:43', null);
+INSERT INTO `uploads` VALUES ('2', '0jX57D__Ku17loxc6nLj04', 'Tulips.jpg', '815ecbe307523c2f4351cb908a28e569.jpg', '2015-07-10 10:45:14', null);
+INSERT INTO `uploads` VALUES ('3', '6f6VTlqDp-V6nrU4KAMjh1', 'Penguins.jpg', '053a07f0de5e963307ad07614b15982b.jpg', '2015-07-10 10:46:14', null);
+INSERT INTO `uploads` VALUES ('4', 'null', 'Tulips.jpg', '6456b64cc56170c9a5b184796f2d8de9.jpg', '2015-07-10 10:55:59', null);
+INSERT INTO `uploads` VALUES ('5', 'null', 'Lighthouse.jpg', 'dc000c5814604d37d24b258c6903b373.jpg', '2015-07-10 11:03:17', null);
+INSERT INTO `uploads` VALUES ('6', 'RB7whG0kLUKPCSnAQ-2qYf', 'Koala.jpg', 'fdfe723c5969e9ba0019ba6f10cf8c6f.jpg', '2015-07-10 11:36:33', null);
+INSERT INTO `uploads` VALUES ('7', 'RB7whG0kLUKPCSnAQ-2qYf', 'Lighthouse.jpg', '6e4235f48cf0589194d7afc12ea330ef.jpg', '2015-07-10 11:36:33', null);
+INSERT INTO `uploads` VALUES ('8', 'QABsNo20WfMhUpVT9tpLpk', 'Penguins.jpg', '4964388879aa012f5a261c0a68e5bf00.jpg', '2015-07-10 11:37:04', null);
+INSERT INTO `uploads` VALUES ('9', 'QABsNo20WfMhUpVT9tpLpk', 'Tulips.jpg', 'f61567614586ab94668353e025139093.jpg', '2015-07-10 11:37:04', null);
+INSERT INTO `uploads` VALUES ('10', 'ntolit4qiCFcDg915oO_nD', 'Lighthouse.jpg', '9a20105fa32053988259b88c3c890327.jpg', '2015-07-10 11:37:22', null);
+INSERT INTO `uploads` VALUES ('11', 'ntolit4qiCFcDg915oO_nD', 'Desert.jpg', 'c3e33c51d1d91bc4a7655d9997a8475a.jpg', '2015-07-10 11:37:22', null);
+
+-- ----------------------------
+-- Table structure for uploadsp
+-- ----------------------------
+DROP TABLE IF EXISTS `uploadsp`;
+CREATE TABLE `uploadsp` (
+  `upload_id` int(11) NOT NULL AUTO_INCREMENT,
+  `ref` varchar(50) DEFAULT NULL,
+  `file_name` varchar(150) DEFAULT NULL COMMENT 'ชื่อไฟล์',
+  `real_filename` varchar(150) DEFAULT NULL COMMENT 'ชื่อไฟล์จริง',
+  `create_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `type` int(11) DEFAULT NULL COMMENT 'ประเภท',
+  PRIMARY KEY (`upload_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of uploadsp
+-- ----------------------------
+INSERT INTO `uploadsp` VALUES ('1', 'Aoh9hpTQMO4-IRbc6xFnv5', 'Koala.jpg', '2123c8b99816782cee16c190dbf72785.jpg', '2015-07-10 12:40:24', null);
+INSERT INTO `uploadsp` VALUES ('2', 'Aoh9hpTQMO4-IRbc6xFnv5', 'Tulips.jpg', '7a3a1c137e355cc7200ab5c068f40aa4.jpg', '2015-07-10 12:40:24', null);
+INSERT INTO `uploadsp` VALUES ('3', 'Aoh9hpTQMO4-IRbc6xFnv5', 'Lighthouse.jpg', '6132c1588041c68f0443d2edd5688fae.jpg', '2015-07-10 12:40:24', null);
+INSERT INTO `uploadsp` VALUES ('4', 'Aoh9hpTQMO4-IRbc6xFnv5', 'Penguins.jpg', '9458ef7703f820807d514ad4f36d80ea.jpg', '2015-07-10 12:40:29', null);
+INSERT INTO `uploadsp` VALUES ('9', 'BvHm84hkvEDNAZkj5zQp1P', 'DSCF0036.jpg', '9165f6dd635a899e02fd1d2b1282ce0a.jpg', '2015-07-10 14:16:16', null);
+INSERT INTO `uploadsp` VALUES ('10', 'BvHm84hkvEDNAZkj5zQp1P', 'DSCF0070.jpg', '6a0ce9bf6f380d6a84437de107588c91.jpg', '2015-07-10 14:16:16', null);
+INSERT INTO `uploadsp` VALUES ('11', 'BvHm84hkvEDNAZkj5zQp1P', 'Picture 079.jpg', 'ca69bb9d18e6b58c5328edb9c1df2762.jpg', '2015-07-10 14:16:16', null);
+INSERT INTO `uploadsp` VALUES ('12', 'RFxOy6ZoreHa8SXAsc7a-S', 'Lighthouse.jpg', '227df4702efa49ddd6296e2adf6fc8aa.jpg', '2015-07-10 15:16:34', null);
+INSERT INTO `uploadsp` VALUES ('13', 'b9hEX3Iu035_rY4VEGyoo1', 'Koala.jpg', 'bb6e66324ad3693a17447a43b5124981.jpg', '2015-07-10 15:35:04', null);
+INSERT INTO `uploadsp` VALUES ('14', 'b9hEX3Iu035_rY4VEGyoo1', 'Penguins.jpg', '49a28eb2d98c71073a487cee40c7d6ad.jpg', '2015-07-10 15:35:06', null);
+INSERT INTO `uploadsp` VALUES ('15', 'b0DzAGYO2OdgbMnUdT8qgr', 'Penguins.jpg', 'a3e277e6fc94e90d7c67260df3d072bb.jpg', '2015-07-10 16:25:54', null);
+INSERT INTO `uploadsp` VALUES ('16', 'b0DzAGYO2OdgbMnUdT8qgr', 'Koala.jpg', '8abc9765042dee4e109e749d3969945c.jpg', '2015-07-10 16:25:54', null);
+INSERT INTO `uploadsp` VALUES ('17', 'bIyg9t8nqROXGU8dWEvGBE', 'Desert.jpg', 'd51e943d5e9aaa09d2bf13d2e29288e0.jpg', '2015-07-10 17:41:08', null);
+INSERT INTO `uploadsp` VALUES ('18', 'bIyg9t8nqROXGU8dWEvGBE', 'Chrysanthemum.jpg', 'a99dfa0a5f7834f282cad3933fb0a870.jpg', '2015-07-10 17:41:08', null);
+INSERT INTO `uploadsp` VALUES ('19', 'bIyg9t8nqROXGU8dWEvGBE', 'Jellyfish.jpg', '16a85367f324bcd5f88cae9b2eb7fc2f.jpg', '2015-07-10 17:41:08', null);
+INSERT INTO `uploadsp` VALUES ('20', 'bIyg9t8nqROXGU8dWEvGBE', 'Hydrangeas.jpg', 'fffb3638dc2ee63a19ca21d933264246.jpg', '2015-07-10 17:41:13', null);
+INSERT INTO `uploadsp` VALUES ('21', '5mmUhYl1ns7GnFhZvhXR-W', '20140630_111250.jpg', 'a57731029f8bcaf41963ffb605d50fe0.jpg', '2015-07-13 17:34:19', null);
+
+-- ----------------------------
+-- Table structure for uploadsph
+-- ----------------------------
+DROP TABLE IF EXISTS `uploadsph`;
+CREATE TABLE `uploadsph` (
+  `upload_id` int(11) NOT NULL AUTO_INCREMENT,
+  `ref` varchar(50) DEFAULT NULL,
+  `file_name` varchar(150) DEFAULT NULL COMMENT 'ชื่อไฟล์',
+  `real_filename` varchar(150) DEFAULT NULL COMMENT 'ชื่อไฟล์จริง',
+  `create_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `type` int(11) DEFAULT NULL COMMENT 'ประเภท',
+  PRIMARY KEY (`upload_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of uploadsph
+-- ----------------------------
+INSERT INTO `uploadsph` VALUES ('1', '0AGgKVxgoXdKV5emjyusDI', 'Tulips.jpg', '4d2dee5fb949d600601e1ccf1e4ca098.jpg', '2015-07-10 14:43:21', null);
+INSERT INTO `uploadsph` VALUES ('2', '0AGgKVxgoXdKV5emjyusDI', 'Lighthouse.jpg', '42940083c1488f2cc7692fc9608cdfd9.jpg', '2015-07-10 14:43:21', null);
+INSERT INTO `uploadsph` VALUES ('3', '0AGgKVxgoXdKV5emjyusDI', 'Koala.jpg', 'bf4d11ad98d6ea6f1989d6cbd1ad62ee.jpg', '2015-07-10 14:43:21', null);
+INSERT INTO `uploadsph` VALUES ('4', '0AGgKVxgoXdKV5emjyusDI', 'Penguins.jpg', '0158690299f3c106abc3f819baa423a4.jpg', '2015-07-10 14:43:21', null);
+INSERT INTO `uploadsph` VALUES ('5', 'null', 'Jellyfish.jpg', '690bfbcc70be666ea6ddd3780f711228.jpg', '2015-07-10 14:52:48', null);
+INSERT INTO `uploadsph` VALUES ('6', 'null', 'Desert.jpg', 'bafbf02f22a0db4b2b619533db17096d.jpg', '2015-07-10 14:52:48', null);
+INSERT INTO `uploadsph` VALUES ('7', 'null', 'Chrysanthemum.jpg', '8b051dcd0686e8f378463f9fa0777a0b.jpg', '2015-07-10 14:52:48', null);
+INSERT INTO `uploadsph` VALUES ('8', 'null', 'Hydrangeas.jpg', 'f1705eb3e99328f1778ae39cf2fd0e0a.jpg', '2015-07-10 14:52:48', null);
+
+-- ----------------------------
+-- Table structure for uploadsphoto
+-- ----------------------------
+DROP TABLE IF EXISTS `uploadsphoto`;
+CREATE TABLE `uploadsphoto` (
+  `upload_id` int(11) NOT NULL AUTO_INCREMENT,
+  `ref` varchar(50) DEFAULT NULL,
+  `file_name` varchar(150) DEFAULT NULL COMMENT 'ชื่อไฟล์',
+  `real_filename` varchar(150) DEFAULT NULL COMMENT 'ชื่อไฟล์จริง',
+  `create_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `type` int(11) DEFAULT NULL COMMENT 'ประเภท',
+  PRIMARY KEY (`upload_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of uploadsphoto
+-- ----------------------------
+INSERT INTO `uploadsphoto` VALUES ('1', 'vQL4wmctlhp_thBJJ6HiRX', 'Chrysanthemum.jpg', 'be94a314413379c86a00440ccceece50.jpg', '2015-07-10 10:29:32', null);
+INSERT INTO `uploadsphoto` VALUES ('2', 'null', 'Koala.jpg', 'ef08e74f91d8286559307e8cd81be90d.jpg', '2015-07-10 10:39:55', null);
+INSERT INTO `uploadsphoto` VALUES ('3', 'null', 'Penguins.jpg', 'dfeeaf3a407e6be2515223bf9d569593.jpg', '2015-07-10 15:18:12', null);
