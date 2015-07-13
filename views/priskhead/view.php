@@ -38,7 +38,36 @@ $this->params['breadcrumbs'][] = $this->title;
             'proheadName',
             'prodetailName',
             'risk_ref_no',
-            'input_complain',
+            'complainName',
+            
+            'safety',
+            'outcome_pt',
+            'outcome_guest',
+            'outcome_staff',
+            'outcome_price',
+            'solve_begin',
+            'sum_solve',
+            'levelName',
+            'risk_head_department',
+            'risk_status',
+            
+            'program_text',
+            'login_name',
+            'risk_sum_dep',
+            'simpleName',
+            'date_input',
+            'last_update',
+            'last_staff',
+            'print_url:url',
+            'act_st',
+            
+            'clinictypeName',
+            'riskplaceName',
+            'staff',
+            'risk_again',
+            'date_complete',
+           
+            
         ],
     ]) ?>
 <div class="panel panel-default">

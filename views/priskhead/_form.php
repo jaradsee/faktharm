@@ -19,6 +19,8 @@ use app\models\Prodetail;
 use app\models\Riskplace;
 use yii\helpers\VarDumper;
 use kartik\widgets\DepDrop;
+use kartik\widgets\TypeaheadBasic;
+use app\models\Complain;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Priskhead */
@@ -49,22 +51,66 @@ use kartik\widgets\DepDrop;
     
     </div>
 
-    <div class="col-sm-6 col-md-6">
-             <?= $form->field($model, 'date_complete')->widget(
-            DatePicker::className(), [
-                'language' => 'th',
-                 'options' => ['placeholder' => 'Select issue date ...'],
-                'pluginOptions' => [
-                    'format' => 'yyyy-mm-dd',
-                    'todayHighlight' => true
-                ]
-        ]);?>
-            </div>
-
+    <div class="col-xs-6 col-sm-4 col-md-6">
     
-  <?= $form->field($model, 'event_name')->textInput(['maxlength' => 255]) ?>
 
+    <?= $form->field($model, 'department')->widget(Select2::classname(), [
+        'data' => ArrayHelper::map(Adddep::find()->all(),'ADDDEP_ID','DEP_NAME'),
+        'options' => ['placeholder' => 'เลือกแแผนก ...'],
+        'pluginOptions' => [
+            'allowClear' => true
+        ],
+    ]);
+    ?>
+       </div>   
+        
+       
+
+   <div class="col-xs-6 col-sm-6">
     
+    <?= $form->field($model, 'clinictype')->widget(Select2::classname(), [
+        'data' => ArrayHelper::map(Clinictype::find()->all(),'CLINICTYPE_ID','CLINIC_NAME'),
+        'options' => ['placeholder' => 'เลือกประเภทความเสี่ยง ...'],
+        'pluginOptions' => [
+            'allowClear' => true
+        ],
+    ]);
+    ?>  
+    </div>     
+    
+    <div class="col-xs-6 col-sm-6">
+    <?= $form->field($model, 'place_id')->widget(Select2::classname(), [
+        'data' => ArrayHelper::map(Riskplace::find()->all(),'PLACE_ID','PLACE_NAME'),
+        'options' => ['placeholder' => 'เลือกสถานที่เกิดเหตุ ...'],
+        'pluginOptions' => [
+            'allowClear' => true
+        ],
+    ]);
+    ?>   
+     
+     </div>       
+    </div>
+    
+  <?= $form->field($model, 'event_name')->textarea(['rows' => 3]) ?>
+
+    </div>
+<?= $form->field($model, 'safety')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'outcome_pt')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'outcome_guest')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'outcome_staff')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'outcome_price')->textInput() ?>
+
+    <?= $form->field($model, 'solve_begin')->textInput(['maxlength' => true]) ?>
+    
+    
+    
+
+    <?= $form->field($model, 'sum_solve')->textInput(['maxlength' => true]) ?>
+
 
     <?= $form->field($model, 'risk_again')->textInput(['maxlength' => true]) ?>
 
@@ -95,8 +141,68 @@ use kartik\widgets\DepDrop;
         ]); ?>
     </div>
 
-    <?= $form->field($model, 'input_complain')->textInput() ?>
-        
+    <div class="col-sm-6 col-md-6 col-md-6">
+    <?= $form->field($model, 'program_text')->textInput(['maxlength' => true]) ?>
+  </div>
+    
+    <div class="col-sm-6 col-md-6">
+   <?= $form->field($model, 'risk_simple')->widget(Select2::classname(), [
+        'data' => ArrayHelper::map(Simple::find()->all(),'SIMPLE_ID','SIMPLE_NAME'),
+        'options' => ['placeholder' => 'เลือกหัวข้อตาม simple ...'],
+        'pluginOptions' => [
+            'allowClear' => true
+        ],
+    ]);
+    ?>   
+    
+     </div>
+    <div class="col-sm-6 col-md-6">
+     <?= $form->field($model, 'risk_level')->widget(Select2::classname(), [
+        'data' => ArrayHelper::map(Level::find()->all(),'level','name'),
+        'options' => ['placeholder' => 'เลือกระดับความรุนแรง ...'],
+        'pluginOptions' => [
+            'allowClear' => true
+        ],
+    ]);
+    ?>   
+    
+     </div>
+    
+ 
+    
+    <div class="col-sm-6 col-md-6 col-md-6">
+     <?= $form->field($model, 'input_complain')->widget(Select2::classname(), [
+        'data' => ArrayHelper::map(\app\models\Complain::find()->all(),'COMPLAIN_ID','COMPLAIN_NAME'),
+        'options' => ['placeholder' => 'เลือกช่องทางรับเรื่องร้องเรียน ...'],
+        'pluginOptions' => [
+            'allowClear' => true
+        ],
+    ]);
+    ?>   
+    </div>
+
+    <?= $form->field($model, 'login_name')->textInput(['maxlength' => true]) ?>
+
+    
+    <?= $form->field($model, 'risk_sum_dep')->textInput() ?>
+
+    
+
+    <?= $form->field($model, 'date_input')->textInput() ?>
+
+    <?= $form->field($model, 'last_update')->textInput() ?>
+
+    <?= $form->field($model, 'last_staff')->textInput(['maxlength' => true]) ?>
+
+<?= $form->field($model, 'risk_status')->widget(Select2::classname(), [
+        'data' => ArrayHelper::map(Status::find()->all(),'STATUS_ID','STATUS_NAME'),
+        'options' => ['placeholder' => 'เลือกสถานะของรายการ ...'],
+        'pluginOptions' => [
+            'allowClear' => true
+        ],
+    ]);
+    ?>   
+      </div>  
         <div class="form-group field-upload_files">
       <label class="control-label" for="upload_files[]"> ภาพถ่าย </label>
     <div>
