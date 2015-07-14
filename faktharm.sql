@@ -1,7 +1,7 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : dhdc
+Source Server         : localhost1
 Source Server Version : 50541
 Source Host           : localhost:3309
 Source Database       : faktharm
@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50541
 File Encoding         : 65001
 
-Date: 2015-07-13 18:50:53
+Date: 2015-07-14 08:18:04
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -300,17 +300,42 @@ CREATE TABLE `priskhead` (
   `risk_time` varchar(5) DEFAULT NULL,
   `prohead` varchar(6) DEFAULT NULL,
   `prodetail` varchar(6) DEFAULT NULL,
+  `department` int(2) DEFAULT NULL,
+  `miss` varchar(1) DEFAULT NULL,
+  `safety` varchar(200) DEFAULT NULL,
+  `outcome_pt` varchar(200) DEFAULT NULL,
+  `outcome_staff` varchar(200) DEFAULT NULL,
+  `outcome_price` double(7,2) DEFAULT NULL,
+  `solve_begin` varchar(200) DEFAULT NULL,
+  `sum_solve` varchar(200) DEFAULT NULL,
+  `risk_level` char(1) DEFAULT NULL,
+  `risk_head_department` varchar(200) DEFAULT NULL,
+  `risk_status` char(1) DEFAULT NULL,
+  `program_text` varchar(200) DEFAULT NULL,
+  `login_name` varchar(100) DEFAULT NULL,
+  `risk_sum_dep` varchar(200) DEFAULT NULL,
+  `risk_simple` int(2) DEFAULT NULL,
+  `date_input` date DEFAULT NULL,
+  `last_update` datetime DEFAULT NULL,
+  `act_st` char(1) DEFAULT NULL,
+  `clinictype` int(2) DEFAULT NULL,
+  `place_id` int(3) DEFAULT NULL,
+  `staff` varchar(100) DEFAULT NULL,
+  `outcome_guest` varchar(200) DEFAULT NULL,
+  `last_staff` varchar(100) DEFAULT NULL,
+  `print_url` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`risk_id`),
   UNIQUE KEY `ref` (`ref`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of priskhead
 -- ----------------------------
-INSERT INTO `priskhead` VALUES ('0001', '2015-07-10', 'มีอาราย', 'Aoh9hpTQMO4-IRbc6xFnv5', '1', null, '', null, '10.00', '3', '18');
-INSERT INTO `priskhead` VALUES ('0002', '2015-07-10', 'ไม่มีอารายหรา', 'BvHm84hkvEDNAZkj5zQp1P', '1', '2015-07-10', '', null, '15.00', '2', '9');
-INSERT INTO `priskhead` VALUES ('0003', '2015-07-10', 'กผิก', 'RFxOy6ZoreHa8SXAsc7a-S', '1', '2015-07-10', '', null, '15.00', '4', '28');
-INSERT INTO `priskhead` VALUES ('0004', '2015-07-13', 'มีอารายก้อว่ามา', '5mmUhYl1ns7GnFhZvhXR-W', '1', null, '1', '1', '10.00', '14', '97');
+INSERT INTO `priskhead` VALUES ('0001', '2015-07-10', 'มีอาราย', 'Aoh9hpTQMO4-IRbc6xFnv5', '1', null, '', null, '10.00', '3', '18', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `priskhead` VALUES ('0002', '2015-07-10', 'ไม่มีอารายหรา', 'BvHm84hkvEDNAZkj5zQp1P', '1', '2015-07-10', '', null, '15.00', '2', '9', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `priskhead` VALUES ('0003', '2015-07-10', 'กผิก', 'RFxOy6ZoreHa8SXAsc7a-S', '1', '2015-07-10', '', null, '15.00', '4', '28', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `priskhead` VALUES ('0004', '2015-07-13', 'มีอารายก้อว่ามา', '5mmUhYl1ns7GnFhZvhXR-W', '1', null, '1', '1', '10.00', '14', '97', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `priskhead` VALUES ('0005', '2015-07-13', 'อารายที่มีประโยชน์', 'SIZ8VfENIhxQVy_doIRotE', '1', null, '', '2', '10.00', '2', '9', '1', null, 'ป้องกัน', 'ผู้ป่วย', 'เจ้าาหน้าที่', '500.00', 'เอาอะไรไปก่อน', 'ดีดีๆ', '1', null, null, '', null, 'สสาววว', '3', null, null, null, '1', '1', null, 'ญาติ', null, null);
 
 -- ----------------------------
 -- Table structure for prodetail
@@ -714,7 +739,7 @@ CREATE TABLE `uploadsp` (
   `create_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `type` int(11) DEFAULT NULL COMMENT 'ประเภท',
   PRIMARY KEY (`upload_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of uploadsp
@@ -736,6 +761,7 @@ INSERT INTO `uploadsp` VALUES ('18', 'bIyg9t8nqROXGU8dWEvGBE', 'Chrysanthemum.jp
 INSERT INTO `uploadsp` VALUES ('19', 'bIyg9t8nqROXGU8dWEvGBE', 'Jellyfish.jpg', '16a85367f324bcd5f88cae9b2eb7fc2f.jpg', '2015-07-10 17:41:08', null);
 INSERT INTO `uploadsp` VALUES ('20', 'bIyg9t8nqROXGU8dWEvGBE', 'Hydrangeas.jpg', 'fffb3638dc2ee63a19ca21d933264246.jpg', '2015-07-10 17:41:13', null);
 INSERT INTO `uploadsp` VALUES ('21', '5mmUhYl1ns7GnFhZvhXR-W', '20140630_111250.jpg', 'a57731029f8bcaf41963ffb605d50fe0.jpg', '2015-07-13 17:34:19', null);
+INSERT INTO `uploadsp` VALUES ('22', 'SIZ8VfENIhxQVy_doIRotE', 'Penguins.jpg', '7e87f8dcf2b0f31690957bd38389a72f.jpg', '2015-07-13 21:56:36', null);
 
 -- ----------------------------
 -- Table structure for uploadsph
